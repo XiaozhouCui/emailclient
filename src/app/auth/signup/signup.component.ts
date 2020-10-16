@@ -13,7 +13,7 @@ export class SignupComponent implements OnInit {
     {
       // 1st arg is the default value
       // 2nd arg array contains sync validators
-      // 3rd arg array contains async validators
+      // 3rd arg array contains async validators (only run when sync validators all pass)
       username: new FormControl(
         '',
         [

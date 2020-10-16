@@ -10,7 +10,9 @@ export class UniqueUsername implements AsyncValidator {
   // use arrow function to bind "this" to current class
   validate = (control: FormControl) => {
     const { value } = control;
-    console.log(this.http);
-    return null;
+    // generic annotation <any>: getting any type of response from request
+    return this.http.post<any>('https://api.angular-email.com/auth/username', {
+      username: value,
+    });
   };
 }
