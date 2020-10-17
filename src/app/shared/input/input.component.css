@@ -1,0 +1,5 @@
+/* :host refer to the current input element */
+:host {
+  display: block;
+  margin-bottom: 1em;
+}
