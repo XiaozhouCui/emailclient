@@ -18,5 +18,10 @@ export class AppComponent {
 
     // check if user is signed in
     this.authService.checkAuth().subscribe(() => {});
+
+    // // signout after 5 seconds
+    // setTimeout(() => {
+    //   this.authService.signout().subscribe(() => {});
+    // });
   }
 }

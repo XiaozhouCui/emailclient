@@ -17,6 +17,11 @@ interface SignupResponse {
   username: string;
 }
 
+interface SignedinResponse {
+  authenticated: boolean;
+  username: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -46,7 +51,7 @@ export class AuthService {
     return this.http
       .post<SignupResponse>(`${this.rootUrl}/auth/signup`, credentials, {
         // by difault, httpClient will discard cookies in response, need to set withCredentials to "true"
-        withCredentials: true,
+        // withCredentials: true,
       })
       .pipe(
         // if an error coming out of the observable, it will skip the tap() operator
@@ -59,13 +64,22 @@ export class AuthService {
 
   checkAuth() {
     return this.http
-      .get(`${this.rootUrl}/auth/signedin`, {
-        withCredentials: true, // accept cookies in response
+      .get<SignedinResponse>(`${this.rootUrl}/auth/signedin`, {
+        // withCredentials: true, // accept cookies in response
       })
       .pipe(
-        tap((res) => {
-          console.log(res);
+        tap(({ authenticated }) => {
+          // response: {authenticated: true, username: "a5sd3f54sad"}
+          this.signedin$.next(authenticated);
         })
       );
+  }
+
+  signout() {
+    return this.http.post(`${this.rootUrl}/auth/signout`, {}).pipe(
+      tap(() => {
+        this.signedin$.next(false);
+      })
+    );
   }
 }
