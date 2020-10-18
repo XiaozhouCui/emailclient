@@ -44,12 +44,27 @@ export class AuthService {
   // receive values from signup form
   signup(credentials: SignupCredentials) {
     return this.http
-      .post<SignupResponse>(`${this.rootUrl}/auth/signup`, credentials)
+      .post<SignupResponse>(`${this.rootUrl}/auth/signup`, credentials, {
+        // by difault, httpClient will discard cookies in response, need to set withCredentials to "true"
+        withCredentials: true,
+      })
       .pipe(
         // if an error coming out of the observable, it will skip the tap() operator
         tap(() => {
           // make the signedin$ BehaviorSubject emit a new value "true"
           this.signedin$.next(true); // emit "true" to the subscriber (app.component) upon successful signup
+        })
+      );
+  }
+
+  checkAuth() {
+    return this.http
+      .get(`${this.rootUrl}/auth/signedin`, {
+        withCredentials: true, // accept cookies in response
+      })
+      .pipe(
+        tap((res) => {
+          console.log(res);
         })
       );
   }

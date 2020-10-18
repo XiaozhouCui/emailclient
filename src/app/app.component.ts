@@ -15,5 +15,8 @@ export class AppComponent {
     this.authService.signedin$.subscribe((signedin) => {
       this.signedin = signedin;
     });
+
+    // check if user is signed in
+    this.authService.checkAuth().subscribe(() => {});
   }
 }
