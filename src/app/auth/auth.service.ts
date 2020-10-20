@@ -37,7 +37,7 @@ export class AuthService {
 
   // BehaviorSubject is both observable and observer, it can take in a default value (false) and emit new value immediately after new subscriber subscribes
   // adding an optional "$" sign to label it as an "observable"
-  signedin$ = new BehaviorSubject(false); // not signed in by default (false)
+  signedin$ = new BehaviorSubject(null); // not signed in by default (false)
 
   // this function will return an observable
   usernameAvailable(username: string) {
@@ -75,7 +75,7 @@ export class AuthService {
       .pipe(
         tap(({ authenticated }) => {
           // response: {authenticated: true, username: "a5sd3f54sad"}
-          this.signedin$.next(authenticated);
+          this.signedin$.next(authenticated); // emit "true" or "false"
         })
       );
   }

@@ -17,6 +17,7 @@ export class AppComponent {
     });
 
     // check if user is signed in
+    // checkAuth() will return an observable and will emit "true" or "false"
     this.authService.checkAuth().subscribe(() => {});
 
     // // signout after 5 seconds
