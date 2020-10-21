@@ -1,1 +1,9 @@
-<p>email-create works!</p>
+<button (click)="showModal = true" class="ui button inverted primary fluid">
+  Compose
+</button>
+
+<!-- "dismiss" event is emitted from modal class, when "x" is clicked -->
+<app-modal (dismiss)="showModal = false" *ngIf="showModal">
+  <!-- "modalTitle" attribute will be captured by <ng-content select="[modalTitle]"> in modal template -->
+  <div modalTitle>Compose</div>
+</app-modal>
