@@ -27,11 +27,17 @@ interface SigninCredentials {
   password: string;
 }
 
+interface SigninResponse {
+  username: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   constructor(private http: HttpClient) {}
+
+  username: string;
 
   rootUrl = 'https://api.angular-email.com';
 
@@ -60,9 +66,10 @@ export class AuthService {
       })
       .pipe(
         // if an error coming out of the observable, it will skip the tap() operator
-        tap(() => {
+        tap((response) => {
           // make the signedin$ BehaviorSubject emit a new value "true"
           this.signedin$.next(true); // emit "true" to the subscriber (app.component) upon successful signup
+          this.username = response.username;
         })
       );
   }
@@ -73,9 +80,10 @@ export class AuthService {
         // withCredentials: true, // accept cookies in response
       })
       .pipe(
-        tap(({ authenticated }) => {
+        tap(({ authenticated, username }) => {
           // response: {authenticated: true, username: "a5sd3f54sad"}
           this.signedin$.next(authenticated); // emit "true" or "false"
+          this.username = username;
         })
       );
   }
@@ -89,12 +97,15 @@ export class AuthService {
   }
 
   signin(credentials: SigninCredentials) {
-    return this.http.post(`${this.rootUrl}/auth/signin`, credentials).pipe(
-      tap(() => {
-        // tap operator will only be executed when request is successful
-        // make the signedin$ BehaviorSubject emit a new value "true"
-        this.signedin$.next(true); // emit "true" to the subscriber (app.component) upon successful signin
-      })
-    );
+    return this.http
+      .post<SigninResponse>(`${this.rootUrl}/auth/signin`, credentials)
+      .pipe(
+        tap((response) => {
+          // tap operator will only be executed when request is successful
+          // make the signedin$ BehaviorSubject emit a new value "true"
+          this.signedin$.next(true); // emit "true" to the subscriber (app.component) upon successful signin
+          this.username = response.username;
+        })
+      );
   }
 }
