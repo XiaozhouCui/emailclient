@@ -6,4 +6,5 @@
 <app-modal (dismiss)="showModal = false" *ngIf="showModal">
   <!-- "modalTitle" attribute will be captured by <ng-content select="[modalTitle]"> in modal template -->
   <div modalTitle>Compose</div>
+  <app-email-form [email]="email"></app-email-form>
 </app-modal>
