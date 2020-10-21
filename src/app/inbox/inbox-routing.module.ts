@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { EmailResolverService } from './email-resolver.service';
 import { EmailShowComponent } from './email-show/email-show.component';
 import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       // need to add <router-outlet> in HomeComponent to show its children
+      { path: 'not-found', component: NotFoundComponent },
       {
         path: ':id',
         component: EmailShowComponent,
