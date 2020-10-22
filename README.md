@@ -1,6 +1,20 @@
 # Emailclient
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.3.
+This Angular project provides the user interface for a email client. By calling various API endpoints at `https://api.angular-email.com`, you can register new accounts and login. Once authenticated, you can send, receive and reply emails using your newly registered email address.
+
+## Technologies used
+
+*Angular 10
+*TypeScript
+*RxJs
+*Router
+*ReactiveForms
+*Dependency Injection
+\*Decorators
+
+## How to use
+
+Once you registered as a new user, your email address will be `username@angular-email.com`.
 
 ## Development server
 
