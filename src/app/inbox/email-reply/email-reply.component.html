@@ -2,6 +2,7 @@
 
 <app-modal *ngIf="showModal" (dismiss)="showModal = false">
   <div modalTitle>Reply</div>
+  <!-- receive email from parent email-show, pass email down to child to populate email-form -->
   <app-email-form
     [email]="email"
     (emailSubmit)="onSubmit($event)"
