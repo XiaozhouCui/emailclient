@@ -1,20 +1,21 @@
 # Emailclient
 
-This Angular project provides the user interface for a email client. By calling various API endpoints at `https://api.angular-email.com`, you can register new accounts and login. Once authenticated, you can send, receive and reply emails using your newly registered email address.
+This Angular project provides the user interface of an email client. By calling API endpoints at `https://api.angular-email.com`, you can register new accounts and login. Once authenticated, you can send, receive and reply emails using your newly registered email address.
 
 ## Technologies used
 
-*Angular 10
-*TypeScript
-*RxJs
-*Router
-*ReactiveForms
-*Dependency Injection
-\*Decorators
+- Angular 10
+- TypeScript
+- RxJs
+- Router
+- ReactiveForms
+- Dependency Injection
+- Decorators
+- Semantic UI
 
 ## How to use
 
-Once you registered as a new user, your email address will be `username@angular-email.com`.
+Once you registered a new username, your email address will be `username@angular-email.com`.
 
 ## Development server
 
